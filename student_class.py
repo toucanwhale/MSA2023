@@ -33,4 +33,4 @@ class Student():
 
 
     def print_student_data(self):
-        print(f"Name: {self.__first_name} {self.__last_name}. Major: {self.__major}. Credit hours: {self.__credit_hours}. GPAS: {self.__gpa}. ID#: {self.__id}")
+        print(f"Name: {self.__first_name} {self.__last_name}. Major: {self.__major}. Credit hours: {self.__credit_hours}. GPA: {self.__gpa}. ID#: {self.__id}")
