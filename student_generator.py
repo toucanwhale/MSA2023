@@ -20,14 +20,14 @@ for line_of_data in student_repository:
         last_name = keys_values[1]
         major = keys_values[2]
         credit_hours = int(keys_values[3])
-        gpa = keys_values[4]
+        gpa = float(keys_values[4])
         id = int(keys_values[5])
         
     except IndexError:
-        print(f"There is an error in your data file on the line {line}")
+        print(f"There is an error in your data file on the line {line}. Text: {line_of_data}")
         continue
     except ValueError:
-        print(f"There is an error in your data file on the line {line}")
+        print(f"There is an error in your data file on the line {line}. Text: {line_of_data}")
         continue
     student = student_class.Student(first_name, last_name, major, credit_hours, gpa, id)
     student_list.append(student)
