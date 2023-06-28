@@ -29,7 +29,40 @@ def index():
 
     #get student data
     student_data = get_student_data(url)
-    return render_template('index.html', student_data = student_data)
+    return render_template("index.html", student_data = student_data)
+
+#create a route for the majors search page
+@app.route('/majors', methods=['GET', 'POST'])
+def majors():
+    #make a request to the student api url
+    url = 'http://127.0.0.1:5000/api/students/all'
+
+    #get student data
+    student_data = get_student_data(url)
+
+    #write code that gets the unique majors from the student_data list
+    major_list = []
+    for student in student_data:
+        if student['major'] not in major_list:
+            major_list.append(student['major'])
+    
+    if request.method == 'POST':
+        #get the form data
+        major=request.form['major'].strip()
+        #create list to store results
+        result_list = []
+        #validate form data
+        if not major:
+            flash("You must select a major")
+        else:
+            #get students with selected major and place in results list
+            for student in student_data:
+                if student['major'] == major:
+                    result_list.append(student)
+            return render_template('majors.html', major_list= major_list, result_list=result_list)
+    
+
+    return render_template('majors.html', major_list= major_list)
 
 #run the flask application
 app.run(port=5007)
